@@ -5,41 +5,51 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Officials (models.Model):
     db_table = 'officials'
-    name = models.CharField(max_length=30)
-    uname = models.CharField(max_length=50)
-    phone = models.CharField(max_length=15)
-    email = models.EmailField(max_length=30)
-    image = models.CharField(max_length=100)
-    category = models.CharField(max_length=10)
+    official_user_name = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    category = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.official_user_name
 
 
+# referee table
 class Referee (models.Model):
     db_table = 'referee'
-    ref_name = models.CharField(max_length=100)
-    uname = models.CharField(max_length=50)
-    phone = models.CharField(max_length=10)
-    email = models.EmailField(max_length=30)
-    image = models.CharField(max_length=100)
-    status = models.CharField(max_length=10)
+    ref_user_name = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    status = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
-        return self.ref_name
+        return self.ref_user_name
 
 
+# team table
 class Team (models.Model):
     db_table = 'team'
+    coach_user_name = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     team_name = models.CharField(max_length=40)
-    gender = models.CharField(max_length=10)
-    uname = models.CharField(max_length=30)
-    phone = models.CharField(max_length=15)
-    email = models.EmailField(max_length=30)
-    image = models.CharField(max_length=100)
-    coach_name = models.CharField(max_length=100)
+    team_image = models.ImageField(upload_to='teams/%m/%d')
     constituency = models.CharField(max_length=30)
 
     def __str__(self):
         return self.team_name
 
+
+# user profile
+class UserProfile(models.Model):
+    # user type choices
+    USER_TYPE_CHOICES = (
+        (1, 'admin'),
+        (2, 'ref'),
+        (3, 'coach'),
+        (4, 'official')
+    )
+
+    user = models.OneToOneField(User, unique=True, on_delete=models.DO_NOTHING)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField(max_length=30, unique=True)
+    image = models.ImageField(upload_to='images/%m/%d')
+    gender = models.CharField(max_length=10)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+
+    def __str__(self):
+        return str(self.user)

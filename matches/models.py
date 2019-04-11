@@ -13,7 +13,7 @@ class MatchFixtures(models.Model):
     league_id = models.ForeignKey(League, on_delete=models.DO_NOTHING)
     referee_id = models.ForeignKey(Referee, on_delete=models.DO_NOTHING)
     venue = models.CharField(max_length=30)
-    comments = models.CharField(max_length=255)
+    comments = models.TextField()
 
     def __str__(self):
         return self.id
@@ -30,5 +30,5 @@ class MatchResults(models.Model):
     league_id = models.ForeignKey(League, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.scores
+        return self.id
 
