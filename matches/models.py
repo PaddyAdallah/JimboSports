@@ -16,7 +16,7 @@ class MatchFixtures(models.Model):
     comments = models.TextField()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 # match results
@@ -30,5 +30,5 @@ class MatchResults(models.Model):
     league_id = models.ForeignKey(League, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 

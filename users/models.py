@@ -9,7 +9,7 @@ class Officials (models.Model):
     category = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
-        return self.official_user_name
+        return str(self.official_user_name)
 
 
 # referee table
@@ -19,7 +19,7 @@ class Referee (models.Model):
     status = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
-        return self.ref_user_name
+        return str(self.ref_user_name)
 
 
 # team table
@@ -27,7 +27,7 @@ class Team (models.Model):
     db_table = 'team'
     coach_user_name = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     team_name = models.CharField(max_length=40)
-    team_image = models.ImageField(upload_to='teams/%m/%d')
+    team_image = models.ImageField(upload_to='teams')
     constituency = models.CharField(max_length=30)
 
     def __str__(self):

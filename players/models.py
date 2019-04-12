@@ -7,8 +7,8 @@ from matches.models import MatchFixtures
 # players information
 class Players(models.Model):
     db_table = 'players'
-    photo = models.ImageField(upload_to='players/%m/%d')
-    birth_certificate = models.ImageField(upload_to='birth/%m/%d')
+    photo = models.ImageField(upload_to='players')
+    birth_certificate = models.ImageField(upload_to='birth')
     current_team_id = models.ForeignKey(Team, on_delete=models.DO_NOTHING)
     date_joined = models.DateField()
     date_left = models.DateField()
@@ -35,7 +35,7 @@ class PlayersStats(models.Model):
     cards = models.CharField(max_length=5)
 
     def __str__(self):
-        return self.player_id
+        return str(self.player_id)
 
 
 # transfers
@@ -59,5 +59,5 @@ class Participation(models.Model):
     game_id = models.ForeignKey(MatchFixtures, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 

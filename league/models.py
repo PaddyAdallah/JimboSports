@@ -22,7 +22,7 @@ class LeagueTeam(models.Model):
     team_id = models.ForeignKey(Team, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 
