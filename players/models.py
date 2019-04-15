@@ -27,8 +27,8 @@ class Players(models.Model):
 class PlayersStats(models.Model):
     db_table = 'player_stats'
     match_fixture_id = models.ForeignKey(MatchFixtures, on_delete=models.DO_NOTHING)
-    player_id = models.ForeignKey(Players, on_delete=models.DO_NOTHING)
-    team_id = models.ForeignKey(Team, on_delete=models.DO_NOTHING)
+    player = models.ForeignKey(Players, on_delete=models.DO_NOTHING)
+    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING)
     goals = models.IntegerField()
     match_time = models.DateField()
     injured = models.CharField(max_length=5)
@@ -41,11 +41,11 @@ class PlayersStats(models.Model):
 # transfers
 class Transfers(models.Model):
     db_table = 'transfers'
-    player_id = models.ForeignKey(Players, on_delete=models.DO_NOTHING)
-    from_team_id = models.ForeignKey(Team, related_name='from_team_name', on_delete=models.DO_NOTHING)
+    player = models.ForeignKey(Players, on_delete=models.DO_NOTHING)
+    from_team = models.ForeignKey(Team, related_name='from_team_name', on_delete=models.DO_NOTHING)
     start_date = models.DateField()
     end_date = models.DateField()
-    to_team_id = models.ForeignKey(Team, related_name='to_team_Name', on_delete=models.DO_NOTHING)
+    to_team = models.ForeignKey(Team, related_name='to_team_Name', on_delete=models.DO_NOTHING)
     additional_info = models.TextField()
 
     def __str__(self):
@@ -55,8 +55,8 @@ class Transfers(models.Model):
 # store each player who participated
 class Participation(models.Model):
     db_table = 'participation'
-    player_id = models.ForeignKey(Players, on_delete=models.DO_NOTHING)
-    game_id = models.ForeignKey(MatchFixtures, on_delete=models.DO_NOTHING)
+    player = models.ForeignKey(Players, on_delete=models.DO_NOTHING)
+    game = models.ForeignKey(MatchFixtures, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return str(self.id)

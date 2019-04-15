@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Officials (models.Model):
     db_table = 'officials'
-    official_user_name = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    official = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     category = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
@@ -15,17 +15,26 @@ class Officials (models.Model):
 # referee table
 class Referee (models.Model):
     db_table = 'referee'
-    ref_user_name = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    ref = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     status = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
         return str(self.ref_user_name)
 
 
+# coach table
+class Coach(models.Model):
+    db_table = 'coach'
+    coach = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return str(self.coach_user_name)
+
+
 # team table
 class Team (models.Model):
     db_table = 'team'
-    coach_user_name = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    coach = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     team_name = models.CharField(max_length=40)
     team_image = models.ImageField(upload_to='teams')
     constituency = models.CharField(max_length=30)

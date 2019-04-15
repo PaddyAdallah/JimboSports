@@ -6,7 +6,7 @@ from users.models import Officials, Team
 # Leagues
 class League(models.Model):
     db_table = 'league'
-    official_id = models.ForeignKey(Officials, on_delete=models.DO_NOTHING)
+    official = models.ForeignKey(Officials, on_delete=models.DO_NOTHING)
     league_name = models.CharField(max_length=30)
     start_date = models.DateField()
     end_date = models.DateField()
@@ -18,8 +18,8 @@ class League(models.Model):
 # Enroll teams to leagues
 class LeagueTeam(models.Model):
     db_table = 'league_team'
-    league_id = models.ForeignKey(League, on_delete=models.DO_NOTHING)
-    team_id = models.ForeignKey(Team, on_delete=models.DO_NOTHING)
+    league = models.ForeignKey(League, on_delete=models.DO_NOTHING)
+    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return str(self.id)
