@@ -12,13 +12,13 @@ class OfficialsSerializer(serializers.ModelSerializer):
         # to exclude any unwanted fields
 
 
-class RefereeSerializers(serializers.ModelSerializer):
+class RefereesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Referee
         fields = '__all__'
 
 
-class Coacheserializers(serializers.ModelSerializer):
+class CoachesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Coach
         fields = '__all__'
@@ -30,7 +30,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class TeamSerializers(serializers.ModelSerializer):
+class TeamsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = '__all__'

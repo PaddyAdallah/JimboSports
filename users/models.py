@@ -1,10 +1,11 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 
 # Create your models here.
 class Officials (models.Model):
     db_table = 'officials'
+    official_user_name = models.TextField()
     official = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     category = models.CharField(max_length=10, blank=True)
 
@@ -15,6 +16,7 @@ class Officials (models.Model):
 # referee table
 class Referee (models.Model):
     db_table = 'referee'
+    ref_user_name = models.TextField()
     ref = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     status = models.CharField(max_length=10, blank=True)
 
@@ -25,6 +27,7 @@ class Referee (models.Model):
 # coach table
 class Coach(models.Model):
     db_table = 'coach'
+    coach_user_name = models.TextField()
     coach = models.OneToOneField(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
