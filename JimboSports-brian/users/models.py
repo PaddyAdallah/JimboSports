@@ -53,9 +53,9 @@ class Coach(models.Model):
 # team table
 class Team(models.Model):
     db_table = 'team'
-    team_name = models.CharField(max_length=40)
+    teams_name = models.CharField(max_length=40)
     team_image = models.ImageField(upload_to='teams')
     coach = models.ForeignKey(Coach, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.team_name
+        return self.teams_name
